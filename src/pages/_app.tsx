@@ -1,7 +1,12 @@
-import { AppProps } from "next/app";
+import { AppProps } from 'next/app';
+import { TaskProvider } from '../context/TaskContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <TaskProvider>
+      <Component {...pageProps} />
+    </TaskProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
