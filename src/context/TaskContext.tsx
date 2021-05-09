@@ -1,5 +1,6 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { createContext } from 'react';
+import { storeTasks } from '../utils/userPersistedState';
 
 interface TaskContextData {
   tasks: TaskProps[];
@@ -24,10 +25,11 @@ export function TaskProvider({ children }: TaskProviderProps) {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
 
   function createNewTask() {
+    console.log(tasks);
     const task = {
       title: `Task ${tasks.length}`,
       position: tasks.length === 0 ? 1 : tasks[tasks.length - 1].position + 1,
-      description: `Description ${tasks.length}`,
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     };
     setTasks([...tasks, task]);
   }
@@ -40,6 +42,10 @@ export function TaskProvider({ children }: TaskProviderProps) {
   }
 
   // function updateTaskPosition() {}
+
+  useEffect(() => {
+    storeTasks(tasks);
+  }, [tasks]);
 
   return (
     <TaskContext.Provider value={{ tasks, createNewTask, deleteTask }}>
