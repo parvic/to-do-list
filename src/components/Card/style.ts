@@ -2,9 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 
-  max-width: 280px;
-  border-radius: 10px;
-
   svg {
     color: #fff;
     font-size: 1.5rem;
@@ -15,14 +12,15 @@ export const Container = styled.div`
   }
 
   li {
+    width: 280px;
     list-style: none;
-    /* background-color: #FF008C; */
-    border-radius: 10px;
+    /* border-radius: 10px; */
     padding: 0 10px;
     overflow: hidden;
     cursor: pointer;
 
   .content {
+    height: 4.5rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -59,23 +57,7 @@ export const Container = styled.div`
   .description {
     color: #fff;
     margin-bottom: 0.5rem;
+    text-align: center;
   }
 }
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  background-color: #666;
-  border-radius: 20px;
-}
-
-.row {
-  width: 100%;
-  height: 8px;
-  background-color: #999;
-  border-radius: 10px;
-  margin-top: 12px;
-}
-
-
 `;

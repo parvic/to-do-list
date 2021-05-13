@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useState } from 'react';
-import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Checkbox } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -35,17 +35,12 @@ export function Card({ title, position, description, color }: TaskProps) {
     <S.Container>
       <motion.li
         layout
-        initial={{ borderRadius: 10 }}
+        initial={{ borderRadius: 4 }}
         style={{ background: `#${color}` }}
       >
         <motion.div className="content">
-          <motion.div className="checkbox" layout>
-            <Checkbox
-              className="checkbox"
-              color="default"
-              checked={done}
-              onChange={handleToggle}
-            />
+          <motion.div layout>
+            <Checkbox color="default" checked={done} onChange={handleToggle} />
           </motion.div>
 
           <motion.div className="title" onClick={toggleOpen} layout>

@@ -1,11 +1,15 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { createContext } from 'react';
-import { storeTasks } from '../utils/userPersistedState';
+import {
+  storeTasks,
+  getTasksFromLocalStorage,
+} from '../utils/userPersistedState';
 
 interface TaskContextData {
   tasks: TaskProps[];
   createNewTask: () => void;
   deleteTask: (string) => void;
+  getTasksFromLocalStorage: () => [];
 }
 
 interface TaskProps {
@@ -25,7 +29,6 @@ export function TaskProvider({ children }: TaskProviderProps) {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
 
   function createNewTask() {
-    console.log(tasks);
     const task = {
       title: `Task ${tasks.length}`,
       position: tasks.length === 0 ? 1 : tasks[tasks.length - 1].position + 1,
@@ -44,11 +47,17 @@ export function TaskProvider({ children }: TaskProviderProps) {
   // function updateTaskPosition() {}
 
   useEffect(() => {
+    setTasks(getTasksFromLocalStorage());
+  }, []);
+
+  useEffect(() => {
     storeTasks(tasks);
   }, [tasks]);
 
   return (
-    <TaskContext.Provider value={{ tasks, createNewTask, deleteTask }}>
+    <TaskContext.Provider
+      value={{ tasks, createNewTask, deleteTask, getTasksFromLocalStorage }}
+    >
       {children}
     </TaskContext.Provider>
   );
