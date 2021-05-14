@@ -12,33 +12,13 @@ export default function CardList() {
   const { tasks, createNewTask, getTasksFromLocalStorage } = useContext(
     TaskContext,
   );
-  const [color, setColor] = useState('ff0040');
-  const [colors, setColors] = useState<string[]>(['ff0040']);
 
-  function incrementeCardColor() {
-    var hexStr = (parseInt(color, 16) + parseInt('000005', 16)).toString(16);
-    while (hexStr.length < 6) {
-      hexStr = '0' + hexStr;
-    }
-    return hexStr;
-  }
-
-  function implementColorArray() {
-    tasks.forEach(task => {
-      console.log('#' + color);
-      setColors([...colors, color]);
-      setColor(incrementeCardColor());
-    });
-  }
-
-  useEffect(() => {
-    implementColorArray();
-  }, [tasks]);
+  useEffect(() => {}, [tasks]);
 
   return (
     <S.Container>
       <AnimateSharedLayout>
-        <motion.ul layout initial={{ borderRadius: 25 }}>
+        <motion.ul layout>
           {tasks.map(task => {
             console.log(task);
             return (

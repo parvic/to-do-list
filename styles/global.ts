@@ -19,9 +19,12 @@ const GlobalStyles = createGlobalStyle`
   }
 }
 
+
+
 body {
-  background-color: var(--gray-900);
-  color: var(--white);
+  width: 100%;
+  height: 100vh;
+  color: #fff;
 }
 
 body, input, textarea, select, button {
