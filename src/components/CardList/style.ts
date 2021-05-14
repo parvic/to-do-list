@@ -5,14 +5,14 @@ export const Container = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
   margin: 0 auto;
+  width: 100%;
 
 
   ul {
     display: flex;
     flex-direction: column;
-    background-color: transparent;
+    max-width: 100%;
     list-style: none;
   }
 `;
@@ -29,6 +29,7 @@ export const Footer = styled.footer`
     margin: 2rem;
     background-color: rgb(255, 0, 64);
     border-radius: 50%;
+    box-shadow: 2px 2px 6px 2px #bbb;
 
     svg {
       font-size: 3rem;

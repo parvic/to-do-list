@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  max-width: 600px;
+  box-shadow: 2px 2px 5px 2px #bbb;
+
 
   svg {
     color: #fff;
@@ -12,7 +15,8 @@ export const Container = styled.div`
   }
 
   li {
-    width: 280px;
+    width: 400px;
+    max-width: 600px;
     list-style: none;
     /* border-radius: 10px; */
     padding: 0 10px;

@@ -13,7 +13,7 @@ export const Container = styled.header`
     align-items: center;
     justify-content: space-between;
     height: 5rem;
-    max-width: 580px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
