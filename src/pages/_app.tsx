@@ -1,13 +1,16 @@
 import { AppProps } from 'next/app';
 
 import Global from '../../styles/global';
+import { TaskProvider } from '../context/TaskContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <Global />
-      <Component {...pageProps} />
-    </>
+    <TaskProvider>
+      <>
+        <Global />
+        <Component {...pageProps} />
+      </>
+    </TaskProvider>
   );
 }
 

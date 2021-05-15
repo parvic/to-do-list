@@ -10,6 +10,9 @@ interface TaskContextData {
   createNewTask: () => void;
   deleteTask: (string) => void;
   getTasksFromLocalStorage: () => [];
+  isModalTaskOpen: boolean;
+  openModal: () => void;
+  closeModal: () => void;
 }
 
 interface TaskProps {
@@ -27,6 +30,7 @@ export const TaskContext = createContext({} as TaskContextData);
 
 export function TaskProvider({ children }: TaskProviderProps) {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
+  const [isModalTaskOpen, setIsModalTaskOpen] = useState(false);
 
   function createNewTask() {
     const task = {
@@ -44,6 +48,15 @@ export function TaskProvider({ children }: TaskProviderProps) {
     setTasks(tempTask);
   }
 
+  function openModal() {
+    console.log();
+    setIsModalTaskOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalTaskOpen(false);
+  }
+
   // function updateTaskPosition() {}
 
   useEffect(() => {
@@ -56,7 +69,15 @@ export function TaskProvider({ children }: TaskProviderProps) {
 
   return (
     <TaskContext.Provider
-      value={{ tasks, createNewTask, deleteTask, getTasksFromLocalStorage }}
+      value={{
+        tasks,
+        createNewTask,
+        deleteTask,
+        getTasksFromLocalStorage,
+        isModalTaskOpen,
+        openModal,
+        closeModal,
+      }}
     >
       {children}
     </TaskContext.Provider>

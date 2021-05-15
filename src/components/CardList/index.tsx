@@ -8,7 +8,11 @@ import { Card } from '../Card';
 import * as S from './style';
 import { TaskContext } from '../../context/TaskContext';
 
-export default function CardList() {
+interface CardListProps {
+  openModal: () => void;
+}
+
+export default function CardList({ openModal }: CardListProps) {
   const { tasks, createNewTask, getTasksFromLocalStorage } = useContext(
     TaskContext,
   );
@@ -34,7 +38,7 @@ export default function CardList() {
           })}
         </motion.ul>
         <S.Footer>
-          <button type="button" onClick={createNewTask}>
+          <button type="button" onClick={openModal}>
             <Add />
           </button>
         </S.Footer>
