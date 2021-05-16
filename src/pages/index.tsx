@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import { useContext, useState } from 'react';
+import { Add } from '@material-ui/icons';
 
 import { Header } from 'components/Header';
 import CardList from 'components/CardList';
 import { NewTaskModal } from 'components/NewTaskModal';
 import { TaskContext } from 'context/TaskContext';
-import { Add } from '@material-ui/icons';
 
-import * as S from './home';
+import * as S from 'styles/home';
 
 export default function Home() {
   const { isModalTaskOpen, openModal, closeModal } = useContext(TaskContext);
