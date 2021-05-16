@@ -35,15 +35,17 @@ export function Card({ title, position, description, color }: TaskProps) {
     <S.Container>
       <motion.li
         layout
-        initial={{ borderRadius: 4 }}
-        style={{ background: `#${color}` }}
+        // initial={{ borderRadius: 4 }}
+        // style={{ background: `#${color}` }}
       >
         <motion.div className="content">
+          <motion.div className="priority" />
+
           <motion.div layout>
             <Checkbox color="default" checked={done} onChange={handleToggle} />
           </motion.div>
 
-          <motion.div className="title" onClick={toggleOpen} layout>
+          <motion.div className="title" layout onClick={toggleOpen}>
             <p>{title}</p>
           </motion.div>
 

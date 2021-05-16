@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { motion, AnimateSharedLayout } from 'framer-motion';
-import { Add } from '@material-ui/icons';
 
 import { Card } from '../Card';
 
@@ -13,9 +12,7 @@ interface CardListProps {
 }
 
 export default function CardList({ openModal }: CardListProps) {
-  const { tasks, createNewTask, getTasksFromLocalStorage } = useContext(
-    TaskContext,
-  );
+  const { tasks } = useContext(TaskContext);
 
   useEffect(() => {}, [tasks]);
 
@@ -37,11 +34,6 @@ export default function CardList({ openModal }: CardListProps) {
             );
           })}
         </motion.ul>
-        <S.Footer>
-          <button type="button" onClick={openModal}>
-            <Add />
-          </button>
-        </S.Footer>
       </AnimateSharedLayout>
     </S.Container>
   );

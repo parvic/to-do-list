@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
+import theme from './theme/light'
+
 const GlobalStyles = createGlobalStyle`
   * {
       margin:0;
@@ -20,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    background-color: ${theme.colors.background};
     width: 100%;
     height: 100vh;
     color: #fff;

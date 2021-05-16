@@ -10,8 +10,6 @@ export function Header() {
           <Menu />
         </button>
 
-        <h1>Main</h1>
-
         <button type="button">
           <Search />
         </button>
