@@ -42,12 +42,14 @@ export const SubmitButton = styled.button`
   align-items: center;
   justify-content: center;
 
-  margin-top: 2rem;
-
   width: 100%;
   height: 4rem;
+  margin-top: 2rem;
 
   color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+
   background-color: #33CC95;
   border-radius: 0.25rem;
   box-shadow: 1px 1px 5px 1px #bbb;
