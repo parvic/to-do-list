@@ -7,8 +7,10 @@ import {
 
 interface TaskContextData {
   tasks: TaskProps[];
+  taskDetails: TaskProps;
   createNewTask: (title: string, description: string) => void;
   deleteTask: (position: number) => void;
+  showTaskDetails: (task: TaskProps) => void;
   getTasksFromLocalStorage: () => [];
   isModalTaskOpen: boolean;
   openModal: () => void;
@@ -18,6 +20,9 @@ interface TaskContextData {
 interface TaskProps {
   title: string;
   position: number;
+  tag: string;
+  priority: string;
+  date: string;
   description: string;
   checked?: boolean;
 }
@@ -30,15 +35,20 @@ export const TaskContext = createContext({} as TaskContextData);
 
 export function TaskProvider({ children }: TaskProviderProps) {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
+  const [taskDetails, setTaskDetails] = useState<TaskProps>(null);
   const [isModalTaskOpen, setIsModalTaskOpen] = useState(false);
   const [lastPosition, setLastPosition] = useState();
 
   function createNewTask(title: string, description: string) {
     console.log(title, description);
     const task = {
-      position: tasks.length === 0 ? 1 : tasks[tasks.length - 1].position + 1,
       title: title,
+      position: tasks.length === 0 ? 1 : tasks[tasks.length - 1].position + 1,
+      tag: '',
+      priority: '',
+      date: '',
       description: description,
+      checked: false,
     };
     setTasks([...tasks, task]);
   }
@@ -50,6 +60,10 @@ export function TaskProvider({ children }: TaskProviderProps) {
     setTasks(tempTask);
   }
 
+  function showTaskDetails(task: TaskProps) {
+    setTaskDetails(task);
+  }
+
   function openModal() {
     console.log();
     setIsModalTaskOpen(true);
@@ -58,8 +72,6 @@ export function TaskProvider({ children }: TaskProviderProps) {
   function closeModal() {
     setIsModalTaskOpen(false);
   }
-
-  // function updateTaskPosition() {}
 
   useEffect(() => {
     setTasks(getTasksFromLocalStorage());
@@ -73,8 +85,10 @@ export function TaskProvider({ children }: TaskProviderProps) {
     <TaskContext.Provider
       value={{
         tasks,
+        taskDetails,
         createNewTask,
         deleteTask,
+        showTaskDetails,
         getTasksFromLocalStorage,
         isModalTaskOpen,
         openModal,

@@ -28,8 +28,10 @@ export default function CardList({ openModal }: CardListProps) {
                 title={task.title}
                 position={task.position}
                 description={task.description}
+                date={task.date}
+                priority={task.priority}
+                tag={task.tag}
                 //color={colors[tasks.indexOf(task)]}
-                color="ff0040"
               />
             );
           })}

@@ -25,7 +25,7 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${theme.colors.background};
     width: 100%;
     height: 100vh;
-    color: #fff;
+    /* color: #fff; */
   }
 
   body, input, textarea, select, button {

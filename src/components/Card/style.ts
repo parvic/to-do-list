@@ -38,7 +38,10 @@ export const Container = styled.div`
       align-items: center;
 
       .title {
+        display: flex;
+        align-items: center;
         width: 100%;
+        height: 100%;
 
         p {
           margin-left: 5px;
@@ -56,12 +59,28 @@ export const Container = styled.div`
 
     .functions {
       display: flex;
-      margin-right: 5px;
+      align-items: center;
+      justify-content: center;
+      width: 4rem;
+      height: 4rem;
+      display: flex;
+      margin-right: 0.25rem;
 
       button {
+
+        width: 2.5rem;
+        height: 2.5rem;
+
         background-color: transparent;
         border: none;
+        border-radius: 50%;
         cursor: pointer;
+
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
       }
     }
   }

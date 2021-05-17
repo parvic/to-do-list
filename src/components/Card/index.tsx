@@ -10,13 +10,22 @@ import { TaskContext } from '../../context/TaskContext';
 interface TaskProps {
   title: string;
   position: number;
+  tag: string;
+  priority: string;
+  date: string;
   description: string;
-  color: string;
-  done?: boolean;
+  checked?: boolean;
 }
 
-export function Card({ title, position, description, color }: TaskProps) {
-  const { deleteTask } = useContext(TaskContext);
+export function Card({
+  title,
+  position,
+  tag,
+  priority,
+  date,
+  description,
+}: TaskProps) {
+  const { deleteTask, showTaskDetails } = useContext(TaskContext);
 
   const [done, setDone] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +36,10 @@ export function Card({ title, position, description, color }: TaskProps) {
 
   function handleDeleteTask() {
     deleteTask(position);
+  }
+
+  function handleShowTask() {
+    showTaskDetails({ title, tag, date, description, position, priority });
   }
 
   const toggleOpen = () => setIsOpen(!isOpen);
@@ -58,7 +71,7 @@ export function Card({ title, position, description, color }: TaskProps) {
             <Checkbox color="default" checked={done} onChange={handleToggle} />
           </motion.div>
 
-          <motion.div className="title" layout onClick={toggleOpen}>
+          <motion.div className="title" layout onClick={handleShowTask}>
             <p>{title}</p>
           </motion.div>
 

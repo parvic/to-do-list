@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import theme from "../styles/theme/light";
+import theme from "styles/theme/light";
 
 export const Container = styled.main`
   display: flex;
@@ -43,6 +43,11 @@ export const TasksSection = styled.div`
 
       /* background-color: ${theme.colors.sectionBackground}; */
       border-radius: 0.25rem;
+    }
+
+    .task-details {
+      display: flex;
+      align-items: center;
     }
   }
 `;
