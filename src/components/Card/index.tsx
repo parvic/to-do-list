@@ -30,13 +30,26 @@ export function Card({ title, position, description, color }: TaskProps) {
   }
 
   const toggleOpen = () => setIsOpen(!isOpen);
+  const intialStyles = {
+    borderBottom: '2px solid #67ec1a',
+    // backgroundColor: 'green',
+    width: '0%',
+  };
+
+  const endingStyles = {
+    borderBottom: '2px solid #67ec1a',
+    // backgroundColor: 'green',
+    width: '100%',
+  };
+
+  const transition = { duration: 2, ease: 'easeOut' };
 
   return (
     <S.Container>
       <motion.li
         layout
-        // initial={{ borderRadius: 4 }}
-        // style={{ background: `#${color}` }}
+        // initial={{ opacity: 0, scale: 0 }}
+        // animate={{ opacity: 1, scale: 1 }}
       >
         <motion.div className="content">
           <motion.div className="priority" />
@@ -56,10 +69,17 @@ export function Card({ title, position, description, color }: TaskProps) {
           </motion.div>
         </motion.div>
 
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {isOpen && <Content description={description} />}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </motion.li>
+      {done && (
+        <motion.div
+          initial={intialStyles}
+          animate={endingStyles}
+          transition={transition}
+        />
+      )}
     </S.Container>
   );
 }

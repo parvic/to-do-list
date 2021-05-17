@@ -7,8 +7,8 @@ import {
 
 interface TaskContextData {
   tasks: TaskProps[];
-  createNewTask: () => void;
-  deleteTask: (string) => void;
+  createNewTask: (title: string, description: string) => void;
+  deleteTask: (position: number) => void;
   getTasksFromLocalStorage: () => [];
   isModalTaskOpen: boolean;
   openModal: () => void;
@@ -31,12 +31,14 @@ export const TaskContext = createContext({} as TaskContextData);
 export function TaskProvider({ children }: TaskProviderProps) {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [isModalTaskOpen, setIsModalTaskOpen] = useState(false);
+  const [lastPosition, setLastPosition] = useState();
 
-  function createNewTask() {
+  function createNewTask(title: string, description: string) {
+    console.log(title, description);
     const task = {
-      title: `Task ${tasks.length}`,
       position: tasks.length === 0 ? 1 : tasks[tasks.length - 1].position + 1,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+      title: title,
+      description: description,
     };
     setTasks([...tasks, task]);
   }

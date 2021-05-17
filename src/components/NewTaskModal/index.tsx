@@ -14,15 +14,17 @@ interface NewTaskProps {
 
 export function NewTaskModal({ isOpen, onRequestClose }: NewTaskProps) {
   const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const { createNewTask } = useContext(TaskContext);
 
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
-    createNewTask();
+    createNewTask(title, description);
   }
 
   useEffect(() => {
     console.log(title);
+    console.log(description);
   }, [title]);
 
   return (
@@ -49,8 +51,12 @@ export function NewTaskModal({ isOpen, onRequestClose }: NewTaskProps) {
           onChange={event => setTitle(event.target.value)}
           placeholder="Enter a task"
         />
-        <input type="text" placeholder="Write a description" />
-        <input placeholder="Select a category" />
+        <input
+          type="text"
+          value={description}
+          onChange={event => setDescription(event.target.value)}
+          placeholder="Write a description"
+        />
 
         <S.SubmitButton type="submit">Register</S.SubmitButton>
       </S.Container>

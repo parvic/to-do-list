@@ -8,6 +8,7 @@ import { NewTaskModal } from 'components/NewTaskModal';
 import { TaskContext } from 'context/TaskContext';
 
 import * as S from 'styles/home';
+import { UserInfo } from 'components/UserInfo';
 
 export default function Home() {
   const { isModalTaskOpen, openModal, closeModal } = useContext(TaskContext);
@@ -24,10 +25,13 @@ export default function Home() {
         <Header />
 
         <S.MainContent>
-          <section>
-            <CardList openModal={openModal} />
-          </section>
-          <section className="calendar"></section>
+          <UserInfo />
+          <S.TasksSection>
+            <section>
+              <CardList openModal={openModal} />
+            </section>
+            <section className="calendar"></section>
+          </S.TasksSection>
         </S.MainContent>
 
         <S.Footer>

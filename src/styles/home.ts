@@ -22,6 +22,13 @@ export const Container = styled.main`
 `;
 
 export const MainContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const TasksSection = styled.div`
   @media (min-width: 1024px) {
     max-width: 800px;
     height: 500px;
