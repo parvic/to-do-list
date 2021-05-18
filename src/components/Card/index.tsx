@@ -6,13 +6,12 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 import * as S from './style';
 import { TaskContext } from '../../context/TaskContext';
-import theme from 'styles/theme/light';
 
 interface TaskProps {
   title: string;
   position: number;
   tag: string;
-  priority: 'priorityLow' | 'priorityMedium' | 'priorityHigh';
+  priority: string;
   date: string;
   description: string;
   checked?: boolean;
