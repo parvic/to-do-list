@@ -1,5 +1,6 @@
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import Modal from 'react-modal';
+import Select from 'react-select';
 import { Close } from '@material-ui/icons';
 
 import * as S from './style';
@@ -15,11 +16,26 @@ interface NewTaskProps {
 export function NewTaskModal({ isOpen, onRequestClose }: NewTaskProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [priority, setPriority] = useState('');
   const { createNewTask } = useContext(TaskContext);
+
+  const priorityOptions = [
+    { value: 'priorityLow', label: 'Low' },
+    { value: 'priorityMedium', label: 'Medium' },
+    { value: 'priorityHigh', label: 'High' },
+  ];
 
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
-    createNewTask(title, description);
+    createNewTask(title, description, priority);
+    console.log(title, description, priority);
+  }
+
+  function handleSelectPriority(prioritySelected: {
+    value: string;
+    label: string;
+  }) {
+    setPriority(prioritySelected.value);
   }
 
   useEffect(() => {
@@ -51,6 +67,13 @@ export function NewTaskModal({ isOpen, onRequestClose }: NewTaskProps) {
           onChange={event => setTitle(event.target.value)}
           placeholder="Enter a task"
         />
+
+        <Select
+          defaultValue={priorityOptions[0]}
+          options={priorityOptions}
+          onChange={handleSelectPriority}
+        />
+
         <input
           type="text"
           value={description}

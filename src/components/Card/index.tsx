@@ -6,12 +6,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 import * as S from './style';
 import { TaskContext } from '../../context/TaskContext';
+import theme from 'styles/theme/light';
 
 interface TaskProps {
   title: string;
   position: number;
   tag: string;
-  priority: string;
+  priority: 'priorityLow' | 'priorityMedium' | 'priorityHigh';
   date: string;
   description: string;
   checked?: boolean;
@@ -65,7 +66,7 @@ export function Card({
         // animate={{ opacity: 1, scale: 1 }}
       >
         <motion.div className="content">
-          <motion.div className="priority" />
+          <motion.div className={`priority ${priority}`} />
 
           <motion.div layout>
             <Checkbox color="default" checked={done} onChange={handleToggle} />

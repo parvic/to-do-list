@@ -8,9 +8,9 @@ export default {
     cardText: '#f4a261',
     cardIcon: '#e76f51',
     card: '#a8a8b3',
-    priority1: '#a8a8b3',
-    priority2: '#909099',
-    priority3: '#909099',
+    priorityLow: '#33CC95',
+    priorityMedium: '#e9c46a',
+    priorityHigh: '#e76f51',
   },
 
   screenSize: {

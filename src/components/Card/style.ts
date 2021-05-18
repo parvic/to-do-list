@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import theme from 'styles/theme/light'
+
 export const Container = styled.div`
   max-width: 100%;
   box-shadow: 2px 2px 5px 2px #bbb;
@@ -10,8 +12,19 @@ export const Container = styled.div`
   .priority{
     width: 8px;
     height: 100%;
-    background-color: #33CC95;
     margin-right: 0.5rem;
+  }
+
+  .priorityLow {
+    background-color: ${theme.colors.priorityLow};
+  }
+
+  .priorityMedium {
+    background-color: ${theme.colors.priorityMedium};
+  }
+
+  .priorityHigh {
+    background-color: ${theme.colors.priorityHigh};
   }
 
   svg {
