@@ -12,7 +12,15 @@ import { TaskDetailed } from 'components/TaskDetailed';
 import * as S from 'styles/pages/home';
 
 export default function Home() {
-  const { isModalTaskOpen, openModal, closeModal } = useContext(TaskContext);
+  const [isModalTaskOpen, setIsModalTaskOpen] = useState(false);
+
+  function openModal() {
+    setIsModalTaskOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalTaskOpen(false);
+  }
 
   return (
     <>

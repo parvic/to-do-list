@@ -58,14 +58,14 @@ export function Card({
   const transition = { duration: 2, ease: 'easeOut' };
 
   return (
-    <S.Container>
+    <S.Container priority={priority}>
       <motion.li
         layout
         // initial={{ opacity: 0, scale: 0 }}
         // animate={{ opacity: 1, scale: 1 }}
       >
         <motion.div className="content">
-          <motion.div className={`priority ${priority}`} />
+          {/* <motion.div className={`priority ${priority}`} /> */}
 
           <motion.div layout>
             <Checkbox color="default" checked={done} onChange={handleToggle} />

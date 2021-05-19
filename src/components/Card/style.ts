@@ -2,17 +2,28 @@ import styled from "styled-components";
 
 import theme from 'styles/theme/light'
 
-export const Container = styled.div`
+interface PriorityProps {
+  priority: string;
+}
+
+export const Container = styled.div<PriorityProps>`
   max-width: 100%;
-  box-shadow: 2px 2px 5px 2px #bbb;
+  box-shadow: 1px 1px 5px 1px #bbb;
   border-radius: 0.25rem;
 
   background-color: #FFFFFF;
+  border-left:
+    ${(props) => props.priority === "priorityLow" ?
+      `8px solid ${theme.colors.priorityLow}` :
+        (props) => props.priority === "priorityMedium" ?
+          `8px solid ${theme.colors.priorityMedium}` : `8px solid ${theme.colors.priorityHigh}`};
 
   .priority{
     width: 8px;
     height: 100%;
     margin-right: 0.5rem;
+    border-radius: 0.25rem 0 0 0.25rem;
+
   }
 
   .priorityLow {

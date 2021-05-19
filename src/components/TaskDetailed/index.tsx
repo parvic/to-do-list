@@ -8,7 +8,7 @@ export function TaskDetailed() {
 
   return (
     taskDetails && (
-      <S.Container>
+      <S.Container priority={taskDetails.priority}>
         <h2 className="task-title">{taskDetails.title}</h2>
         <div className="date-tag">
           <span>{taskDetails.tag}</span>

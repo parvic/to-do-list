@@ -5,6 +5,7 @@ import { Close } from '@material-ui/icons';
 
 import * as S from './style';
 import { TaskContext } from 'context/TaskContext';
+import { settings } from 'cluster';
 
 Modal.setAppElement('#__next');
 
@@ -16,7 +17,8 @@ interface NewTaskProps {
 export function NewTaskModal({ isOpen, onRequestClose }: NewTaskProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [priority, setPriority] = useState('');
+  const [priority, setPriority] = useState('priorityLow');
+
   const { createNewTask } = useContext(TaskContext);
 
   const priorityOptions = [
@@ -28,7 +30,11 @@ export function NewTaskModal({ isOpen, onRequestClose }: NewTaskProps) {
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
     createNewTask(title, description, priority);
-    console.log(title, description, priority);
+
+    setTitle('');
+    setDescription('');
+    setPriority('priorityLow');
+    onRequestClose();
   }
 
   function handleSelectPriority(prioritySelected: {
@@ -37,11 +43,6 @@ export function NewTaskModal({ isOpen, onRequestClose }: NewTaskProps) {
   }) {
     setPriority(prioritySelected.value);
   }
-
-  useEffect(() => {
-    console.log(title);
-    console.log(description);
-  }, [title]);
 
   return (
     <Modal

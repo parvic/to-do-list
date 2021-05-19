@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import theme from 'styles/theme/light'
 
-export const Container = styled.div`
+interface PriorityProps {
+  priority: string;
+}
+
+export const Container = styled.div<PriorityProps>`
   width: 100%;
   max-height: 400px;
   padding: 2rem;
@@ -12,8 +16,12 @@ export const Container = styled.div`
 
   background-color: ${theme.colors.sectionBackground};
   border-radius: 0.25rem;
-  border-left: 8px solid #33CC95;
   box-shadow: 1px 1px 5px 1px #bbb;
+  border-left:
+    ${(props) => props.priority === "priorityLow" ?
+      `8px solid ${theme.colors.priorityLow}` :
+        (props) => props.priority === "priorityMedium" ?
+          `8px solid ${theme.colors.priorityMedium}` : `8px solid ${theme.colors.priorityHigh}`};
 
   .task-title {
     color: #363F5F;
@@ -35,7 +43,7 @@ export const Container = styled.div`
   .description {
     h3 {
       margin-bottom: 0.5rem;
-      text-align: center;
+      text-align: left;
       font-size: 1.5rem;
     }
 
