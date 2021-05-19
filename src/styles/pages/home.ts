@@ -43,6 +43,28 @@ export const TasksSection = styled.div`
 
       /* background-color: ${theme.colors.sectionBackground}; */
       border-radius: 0.25rem;
+
+        /* width */
+      ::-webkit-scrollbar {
+        width: 0.5rem;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        width: 0.5rem;
+        background-color: #fff;
+        /* background: rgba(255, 255, 255, 0); */
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background-color: #a8a8b3;//${theme.colors.priorityMedium};
+        border-radius: 0.25rem;
+
+        &:hover {
+          background-color: ${theme.colors.priorityHigh};
+        }
+      }
     }
 
     .task-details {

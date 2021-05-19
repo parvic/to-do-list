@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Checkbox } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -25,24 +24,43 @@ export function Card({
   date,
   description,
 }: TaskProps) {
-  const { deleteTask, showTaskDetails } = useContext(TaskContext);
+  const { deleteTask, showTaskDetails, storeCompletedTask } = useContext(
+    TaskContext,
+  );
 
-  const [done, setDone] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isTaskDone, setIsTaskDone] = useState(false);
+
+  const task = {
+    title: title,
+    position: position,
+    tag: tag,
+    priority: priority,
+    date: date,
+    description: description,
+  };
 
   function handleToggle() {
-    setDone(!done);
+    setIsTaskDone(!isTaskDone);
   }
 
   function handleDeleteTask() {
+    console.log('handleDeleteTask');
     deleteTask(position);
   }
 
   function handleShowTask() {
-    showTaskDetails({ title, tag, date, description, position, priority });
+    showTaskDetails(task);
   }
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  function handleCompleteTask() {
+    setTimeout(() => {
+      console.log('handleCompleteTask');
+
+      handleDeleteTask();
+      storeCompletedTask(task);
+    }, 2300);
+  }
+
   const intialStyles = {
     borderBottom: '2px solid #67ec1a',
     // backgroundColor: 'green',
@@ -57,18 +75,29 @@ export function Card({
 
   const transition = { duration: 2, ease: 'easeOut' };
 
+  useEffect(() => {
+    console.log(isTaskDone);
+    if (isTaskDone === true) {
+      handleCompleteTask();
+    }
+  }, [isTaskDone]);
+
   return (
     <S.Container priority={priority}>
       <motion.li
         layout
-        // initial={{ opacity: 0, scale: 0 }}
-        // animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
       >
         <motion.div className="content">
           {/* <motion.div className={`priority ${priority}`} /> */}
 
           <motion.div layout>
-            <Checkbox color="default" checked={done} onChange={handleToggle} />
+            <Checkbox
+              color="default"
+              checked={isTaskDone}
+              onChange={handleToggle}
+            />
           </motion.div>
 
           <motion.div className="title" layout onClick={handleShowTask}>
@@ -86,7 +115,7 @@ export function Card({
           {isOpen && <Content description={description} />}
         </AnimatePresence> */}
       </motion.li>
-      {done && (
+      {isTaskDone && (
         <motion.div
           initial={intialStyles}
           animate={endingStyles}

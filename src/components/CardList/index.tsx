@@ -20,21 +20,24 @@ export default function CardList({ openModal }: CardListProps) {
     <S.Container>
       <AnimateSharedLayout>
         <motion.ul layout>
-          {tasks.map(task => {
-            console.log(task);
-            return (
-              <Card
-                key={task.position}
-                title={task.title}
-                position={task.position}
-                description={task.description}
-                date={task.date}
-                priority={task.priority}
-                tag={task.tag}
-                //color={colors[tasks.indexOf(task)]}
-              />
-            );
-          })}
+          {tasks
+            .slice(0)
+            .reverse()
+            .map(task => {
+              console.log(task);
+              return (
+                <Card
+                  key={task.position}
+                  title={task.title}
+                  position={task.position}
+                  description={task.description}
+                  date={task.date}
+                  priority={task.priority}
+                  tag={task.tag}
+                  //color={colors[tasks.indexOf(task)]}
+                />
+              );
+            })}
         </motion.ul>
       </AnimateSharedLayout>
     </S.Container>

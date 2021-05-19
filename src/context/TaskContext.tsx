@@ -11,6 +11,7 @@ interface TaskContextData {
   createNewTask: (title: string, description: string, priority: string) => void;
   deleteTask: (position: number) => void;
   showTaskDetails: (task: TaskProps) => void;
+  storeCompletedTask: (task: TaskProps) => void;
   getTasksFromLocalStorage: () => [];
 }
 
@@ -32,6 +33,7 @@ export const TaskContext = createContext({} as TaskContextData);
 
 export function TaskProvider({ children }: TaskProviderProps) {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
+  const [completedTasks, setCompletedTasks] = useState<TaskProps[]>([]);
   const [taskDetails, setTaskDetails] = useState<TaskProps>(null);
   const [lastPosition, setLastPosition] = useState();
 
@@ -49,7 +51,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
     setTasks([...tasks, task]);
   }
 
-  function deleteTask(position) {
+  function deleteTask(position: number) {
     const tempTask = tasks.filter(task => {
       return task.position !== position && task;
     });
@@ -58,6 +60,12 @@ export function TaskProvider({ children }: TaskProviderProps) {
 
   function showTaskDetails(task: TaskProps) {
     setTaskDetails(task);
+  }
+
+  function storeCompletedTask(completedTask: TaskProps) {
+    setCompletedTasks([...completedTasks, completedTask]);
+    console.log('>>>>>>>>>>');
+    console.log(completedTasks);
   }
 
   useEffect(() => {
@@ -76,6 +84,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
         createNewTask,
         deleteTask,
         showTaskDetails,
+        storeCompletedTask,
         getTasksFromLocalStorage,
       }}
     >
