@@ -24,9 +24,12 @@ export function Card({
   date,
   description,
 }: TaskProps) {
-  const { deleteTask, showTaskDetails, storeCompletedTask } = useContext(
-    TaskContext,
-  );
+  const {
+    deleteTask,
+    showTaskDetails,
+    storeCompletedTask,
+    openTaskDetailsBox,
+  } = useContext(TaskContext);
 
   const [isTaskDone, setIsTaskDone] = useState(false);
 
@@ -49,6 +52,7 @@ export function Card({
   }
 
   function handleShowTask() {
+    openTaskDetailsBox();
     showTaskDetails(task);
   }
 

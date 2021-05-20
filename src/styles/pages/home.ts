@@ -7,17 +7,12 @@ export const Container = styled.main`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  /*height: 100vh; */
 
-  @media (max-width: 425px) {
-    display: flex;
+  @media (max-width: ${theme.screenSize.tablet}) {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @media (max-width: 800px) {
+    position: relative;
   }
 `;
 
@@ -26,22 +21,39 @@ export const MainContent = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: ${theme.screenSize.tablet}) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const TasksSection = styled.div`
-  @media (min-width: 1024px) {
+   @media (max-width: ${theme.screenSize.tablet}) {
+    max-width: 100%;
+    max-height: 70%;
+    display: flex;
+
+    .task-details {
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  @media (min-width: ${theme.screenSize.tablet}) {
     max-width: 800px;
-    height: 500px;
+    /* max-height: 500px; */
 
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 1rem;
 
     section {
-      padding: 1rem;
       overflow-y: auto;
+      max-height: 600px;
 
-      /* background-color: ${theme.colors.sectionBackground}; */
       border-radius: 0.25rem;
 
         /* width */

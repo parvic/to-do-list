@@ -70,6 +70,8 @@ export function NewTaskModal({ isOpen, onRequestClose }: NewTaskProps) {
         />
 
         <Select
+          className="react-select-container"
+          classNamePrefix="react-select"
           defaultValue={priorityOptions[0]}
           options={priorityOptions}
           onChange={handleSelectPriority}

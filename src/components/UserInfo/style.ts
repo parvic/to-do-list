@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import theme from "../../styles/theme/light"
+
 export const Container = styled.div`
   color: #000;
   width: 100%;
@@ -42,5 +44,9 @@ export const Container = styled.div`
     content:"";
     display: block;
     border-bottom: 1px solid blue;
+  }
+
+  @media(max-width: ${theme.screenSize.tablet}) {
+    margin-bottom: 3rem;
   }
 `;

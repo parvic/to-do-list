@@ -35,6 +35,23 @@ export const Container = styled.form`
     }
   }
 
+  .react-select-container {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  .react-select__control {
+    height: 4rem;
+    background-color: #e7e9ee;
+  }
+
+  .react-select__value-container {
+    height: 100%;
+  }
+
+  .react-select__single-value {
+    color: #969CB2;
+  }
 `;
 
 export const SubmitButton = styled.button`

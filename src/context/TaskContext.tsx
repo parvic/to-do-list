@@ -8,11 +8,14 @@ import {
 interface TaskContextData {
   tasks: TaskProps[];
   taskDetails: TaskProps;
+  isTaskDetailShown: boolean;
   createNewTask: (title: string, description: string, priority: string) => void;
   deleteTask: (position: number) => void;
   showTaskDetails: (task: TaskProps) => void;
   storeCompletedTask: (task: TaskProps) => void;
   getTasksFromLocalStorage: () => [];
+  openTaskDetailsBox: () => void;
+  closeTaskDetailsBox: () => void;
 }
 
 interface TaskProps {
@@ -34,6 +37,7 @@ export const TaskContext = createContext({} as TaskContextData);
 export function TaskProvider({ children }: TaskProviderProps) {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [completedTasks, setCompletedTasks] = useState<TaskProps[]>([]);
+  const [isTaskDetailShown, setIsTaskDetailShown] = useState(true);
   const [taskDetails, setTaskDetails] = useState<TaskProps>(null);
   const [lastPosition, setLastPosition] = useState();
 
@@ -68,6 +72,14 @@ export function TaskProvider({ children }: TaskProviderProps) {
     console.log(completedTasks);
   }
 
+  function openTaskDetailsBox() {
+    setIsTaskDetailShown(true);
+  }
+
+  function closeTaskDetailsBox() {
+    setIsTaskDetailShown(false);
+  }
+
   useEffect(() => {
     setTasks(getTasksFromLocalStorage());
   }, []);
@@ -81,11 +93,14 @@ export function TaskProvider({ children }: TaskProviderProps) {
       value={{
         tasks,
         taskDetails,
+        isTaskDetailShown,
         createNewTask,
         deleteTask,
         showTaskDetails,
         storeCompletedTask,
         getTasksFromLocalStorage,
+        openTaskDetailsBox,
+        closeTaskDetailsBox,
       }}
     >
       {children}

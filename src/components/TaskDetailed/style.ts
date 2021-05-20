@@ -13,6 +13,7 @@ export const Container = styled.div<PriorityProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 
   background-color: ${theme.colors.sectionBackground};
   border-radius: 0.25rem;
@@ -51,5 +52,19 @@ export const Container = styled.div<PriorityProps>`
 
     }
   }
+  .task-close-button {
+    position: absolute;
+    background-color: transparent;
 
+    right: 1rem;
+    top: 1rem;
+
+    transition: filter 0.2s;
+
+    color: #A8A8B3;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
 `;

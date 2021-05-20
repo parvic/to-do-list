@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
+import theme from "../../styles/theme/light";
+
 export const Container = styled.header`
   width: 5rem;
-  height: 100vh;
+  height: 100%;
   padding: 2rem 0;
 
   position: fixed;
@@ -35,11 +37,13 @@ export const Container = styled.header`
     }
   }
 
-  @media (max-width: 425px) {
-    width: 100vw;
+  @media (max-width: ${theme.screenSize.tablet}) {
+    position: unset;
+
+    width: 100%;
     height: 5rem;
     padding: 0 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 
     div {
       display: flex;
@@ -48,11 +52,8 @@ export const Container = styled.header`
       justify-content: space-between;
     }
   }
-
-  @media (max-width: 800px) {
-  }
 `;
 
-export const Search = styled.header`
+export const Search = styled.div`
 
 `;

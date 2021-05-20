@@ -14,6 +14,8 @@ import * as S from 'styles/pages/home';
 export default function Home() {
   const [isModalTaskOpen, setIsModalTaskOpen] = useState(false);
 
+  const { isTaskDetailShown } = useContext(TaskContext);
+
   function openModal() {
     setIsModalTaskOpen(true);
   }
@@ -39,9 +41,11 @@ export default function Home() {
             <section>
               <CardList openModal={openModal} />
             </section>
-            <section className="task-details">
-              <TaskDetailed />
-            </section>
+            {isTaskDetailShown && (
+              <section className="task-details">
+                <TaskDetailed />
+              </section>
+            )}
           </S.TasksSection>
         </S.MainContent>
 
