@@ -1,6 +1,10 @@
+import { useContext } from 'react';
+
+import { TaskContext } from 'context/TaskContext';
 import * as S from './style';
 
 export function UserInfo() {
+  const { completedTasks } = useContext(TaskContext);
   return (
     <S.Container>
       <div className="user-content">
@@ -16,7 +20,7 @@ export function UserInfo() {
       </div>
       <div className="task-counter">
         <p>Completed Tasks</p>
-        <span>00</span>
+        <span>{completedTasks.length}</span>
       </div>
     </S.Container>
   );

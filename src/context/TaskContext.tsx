@@ -7,6 +7,7 @@ import {
 
 interface TaskContextData {
   tasks: TaskProps[];
+  completedTasks: TaskProps[];
   taskDetails: TaskProps;
   isTaskDetailShown: boolean;
   createNewTask: (title: string, description: string, priority: string) => void;
@@ -62,14 +63,12 @@ export function TaskProvider({ children }: TaskProviderProps) {
     setTasks(tempTask);
   }
 
-  function showTaskDetails(task: TaskProps) {
-    setTaskDetails(task);
-  }
-
   function storeCompletedTask(completedTask: TaskProps) {
     setCompletedTasks([...completedTasks, completedTask]);
-    console.log('>>>>>>>>>>');
-    console.log(completedTasks);
+  }
+
+  function showTaskDetails(task: TaskProps) {
+    setTaskDetails(task);
   }
 
   function openTaskDetailsBox() {
@@ -92,6 +91,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
     <TaskContext.Provider
       value={{
         tasks,
+        completedTasks,
         taskDetails,
         isTaskDetailShown,
         createNewTask,
