@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Checkbox } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -88,44 +88,46 @@ export function Card({
 
   return (
     <S.Container priority={priority}>
-      <motion.li
-        layout
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-      >
-        <motion.div className="content">
-          {/* <motion.div className={`priority ${priority}`} /> */}
+      <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.99 }}>
+        <motion.li
+          layout
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+        >
+          <motion.div className="content">
+            {/* <motion.div className={`priority ${priority}`} /> */}
 
-          <motion.div layout>
-            <Checkbox
-              color="default"
-              checked={isTaskDone}
-              onChange={handleToggle}
-            />
+            <motion.div layout>
+              <Checkbox
+                color="default"
+                checked={isTaskDone}
+                onChange={handleToggle}
+              />
+            </motion.div>
+
+            <motion.div className="title" layout onClick={handleShowTask}>
+              <p>{title}</p>
+            </motion.div>
+
+            <motion.div className="functions" layout>
+              <button type="button" onClick={handleDeleteTask}>
+                <DeleteIcon />
+              </button>
+            </motion.div>
           </motion.div>
 
-          <motion.div className="title" layout onClick={handleShowTask}>
-            <p>{title}</p>
-          </motion.div>
-
-          <motion.div className="functions" layout>
-            <button type="button" onClick={handleDeleteTask}>
-              <DeleteIcon />
-            </button>
-          </motion.div>
-        </motion.div>
-
-        {/* <AnimatePresence>
+          {/* <AnimatePresence>
           {isOpen && <Content description={description} />}
         </AnimatePresence> */}
-      </motion.li>
-      {isTaskDone && (
-        <motion.div
-          initial={intialStyles}
-          animate={endingStyles}
-          transition={transition}
-        />
-      )}
+        </motion.li>
+        {isTaskDone && (
+          <motion.div
+            initial={intialStyles}
+            animate={endingStyles}
+            transition={transition}
+          />
+        )}
+      </motion.div>
     </S.Container>
   );
 }

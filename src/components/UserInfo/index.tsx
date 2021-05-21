@@ -5,7 +5,7 @@ export function UserInfo() {
     <S.Container>
       <div className="user-content">
         <img
-          src="https://avatars.githubusercontent.com/u/66752969?v=4"
+          src="https://www.ecp.org.br/wp-content/uploads/2017/12/default-avatar-1.png"
           alt="avatar"
         />
 

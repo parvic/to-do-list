@@ -22,9 +22,12 @@ export const MainContent = styled.div`
   align-items: center;
   justify-content: center;
 
+  margin-top: 1rem;
+
   @media (max-width: ${theme.screenSize.tablet}) {
     display: flex;
     flex-direction: column;
+    margin-top: 7rem;
   }
 `;
 
@@ -39,6 +42,7 @@ export const TasksSection = styled.div`
       position: fixed;
       bottom: 0;
       left: 0;
+      z-index: 1;
     }
   }
 
@@ -51,6 +55,7 @@ export const TasksSection = styled.div`
     column-gap: 1rem;
 
     section {
+      padding: 0.75rem;
       overflow-y: auto;
       max-height: 600px;
 
@@ -81,7 +86,9 @@ export const TasksSection = styled.div`
 
     .task-details {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      /* align-items: center; */
     }
   }
 `;
@@ -97,8 +104,8 @@ export const Footer = styled.footer`
     align-items: center;
     justify-content: center;
 
-    width: 3rem;
-    height: 3rem;
+    width: 5rem;
+    height: 5rem;
     margin: 2rem;
 
     background-color: rgb(255, 0, 64);

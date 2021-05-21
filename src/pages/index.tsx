@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useContext, useState } from 'react';
 import { Add } from '@material-ui/icons';
 
-import { Header } from 'components/Header';
+import { Navbar } from 'components/Navbar';
 import CardList from 'components/CardList';
 import { NewTaskModal } from 'components/NewTaskModal';
 import { TaskContext } from 'context/TaskContext';
@@ -33,7 +33,7 @@ export default function Home() {
       <NewTaskModal isOpen={isModalTaskOpen} onRequestClose={closeModal} />
 
       <S.Container>
-        <Header />
+        <Navbar />
 
         <S.MainContent>
           <UserInfo />

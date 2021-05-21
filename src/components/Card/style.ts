@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from 'framer-motion';
 
 import theme from 'styles/theme/light'
 
@@ -7,35 +8,36 @@ interface PriorityProps {
 }
 
 export const Container = styled.div<PriorityProps>`
-  max-width: 100%;
-  box-shadow: 1px 1px 5px 1px #bbb;
-  border-radius: 0.25rem;
+  & > div {
+    max-width: 100%;
+    box-shadow: 1px 1px 5px 1px #bbb;
+    border-radius: 0.25rem;
 
-  background-color: #FFFFFF;
-  border-left:
-    ${(props) => props.priority === "priorityLow" ?
-      `8px solid ${theme.colors.priorityLow}` :
-        (props) => props.priority === "priorityMedium" ?
-          `8px solid ${theme.colors.priorityMedium}` : `8px solid ${theme.colors.priorityHigh}`};
+    background-color: #FFFFFF;
+    border-left:
+      ${(props) => props.priority === "priorityLow" ?
+        `8px solid ${theme.colors.priorityLow}` :
+          (props) => props.priority === "priorityMedium" ?
+            `8px solid ${theme.colors.priorityMedium}` : `8px solid ${theme.colors.priorityHigh}`};
 
-  .priority{
-    width: 8px;
-    height: 100%;
-    margin-right: 0.5rem;
-    border-radius: 0.25rem 0 0 0.25rem;
+    .priority{
+      width: 8px;
+      height: 100%;
+      margin-right: 0.5rem;
+      border-radius: 0.25rem 0 0 0.25rem;
+    }
 
-  }
+    .priorityLow {
+      background-color: ${theme.colors.priorityLow};
+    }
 
-  .priorityLow {
-    background-color: ${theme.colors.priorityLow};
-  }
+    .priorityMedium {
+      background-color: ${theme.colors.priorityMedium};
+    }
 
-  .priorityMedium {
-    background-color: ${theme.colors.priorityMedium};
-  }
-
-  .priorityHigh {
-    background-color: ${theme.colors.priorityHigh};
+    .priorityHigh {
+      background-color: ${theme.colors.priorityHigh};
+    }
   }
 
   svg {
