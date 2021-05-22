@@ -55,6 +55,7 @@ export const TasksSection = styled.div`
     column-gap: 1rem;
 
     section {
+      min-height: 40rem;
       padding: 0.75rem;
       overflow-y: auto;
       max-height: 600px;
@@ -84,6 +85,10 @@ export const TasksSection = styled.div`
       }
     }
 
+    .task-list-section {
+      position: relative;
+    }
+
     .task-details {
       display: flex;
       flex-direction: column;
@@ -95,9 +100,8 @@ export const TasksSection = styled.div`
 
 export const Footer = styled.footer`
   display: flex;
-  position: fixed;
-  bottom: 0;
-  right: 0;
+  justify-content: flex-end;
+
 
   button {
     display: flex;
@@ -106,14 +110,14 @@ export const Footer = styled.footer`
 
     width: 5rem;
     height: 5rem;
-    margin: 2rem;
+    /* margin: 1rem; */
 
     background-color: rgb(255, 0, 64);
     border-radius: 50%;
     box-shadow: 2px 2px 6px 2px #bbb;
 
     svg {
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: #fff;
     }
   }
