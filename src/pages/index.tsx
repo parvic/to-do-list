@@ -45,13 +45,17 @@ export default function Home() {
           <UserInfo />
           <S.TasksSection>
             <section className="task-list-section">
-              <CardList openModal={openModal} />
+              <CardList />
               {bigScreen && (
-                <S.Footer style={{ marginTop: '1rem' }}>
-                  <button type="button" onClick={openModal}>
+                <S.AddButton style={{ marginTop: '1rem' }}>
+                  <button
+                    type="button"
+                    onClick={openModal}
+                    style={{ width: '4rem', height: '4rem' }}
+                  >
                     <Add />
                   </button>
-                </S.Footer>
+                </S.AddButton>
               )}
             </section>
             {isTaskDetailShown && (
@@ -63,13 +67,21 @@ export default function Home() {
         </S.MainContent>
 
         {!bigScreen && (
-          <S.Footer
-            style={{ position: 'fixed', bottom: '2rem', right: '2rem' }}
+          <S.AddButton
+            style={{
+              position: 'fixed',
+              bottom: '2rem',
+              right: '2rem',
+            }}
           >
-            <button type="button" onClick={openModal}>
+            <button
+              type="button"
+              onClick={openModal}
+              style={{ width: '5rem', height: '5rem' }}
+            >
               <Add />
             </button>
-          </S.Footer>
+          </S.AddButton>
         )}
       </S.Container>
     </>

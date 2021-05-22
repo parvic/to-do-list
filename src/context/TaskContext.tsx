@@ -3,6 +3,8 @@ import { createContext } from 'react';
 import {
   storeTasks,
   getTasksFromLocalStorage,
+  storeCompletedTasks,
+  getCompletedTasksFromLocalStorage,
 } from '../utils/userPersistedState';
 
 interface TaskContextData {
@@ -40,13 +42,12 @@ export const TaskContext = createContext({} as TaskContextData);
 export function TaskProvider({ children }: TaskProviderProps) {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [completedTasks, setCompletedTasks] = useState<TaskProps[]>([]);
-  const [taskFilter, setTaskFilter] = useState('');
+  const [taskFilter, setTaskFilter] = useState('allTasks');
   const [isTaskDetailShown, setIsTaskDetailShown] = useState(true);
   const [taskDetails, setTaskDetails] = useState<TaskProps>(null);
   const [lastPosition, setLastPosition] = useState();
 
   function createNewTask(title: string, description: string, priority: string) {
-    console.log(title, description, priority);
     const task = {
       title: title,
       position: tasks.length === 0 ? 1 : tasks[tasks.length - 1].position + 1,
@@ -88,11 +89,16 @@ export function TaskProvider({ children }: TaskProviderProps) {
 
   useEffect(() => {
     setTasks(getTasksFromLocalStorage());
+    setCompletedTasks(getCompletedTasksFromLocalStorage());
   }, []);
 
   useEffect(() => {
     storeTasks(tasks);
   }, [tasks]);
+
+  useEffect(() => {
+    storeCompletedTasks(completedTasks);
+  }, [completedTasks]);
 
   return (
     <TaskContext.Provider

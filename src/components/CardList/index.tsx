@@ -10,8 +10,7 @@ import { TaskContext } from '../../context/TaskContext';
 export default function CardList() {
   const { tasks, completedTasks, taskFilter } = useContext(TaskContext);
 
-  console.log(taskFilter);
-  console.log(completedTasks);
+  const [duration, setDuration] = useState(0.3);
 
   return (
     <S.Container>

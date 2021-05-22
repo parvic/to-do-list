@@ -15,28 +15,16 @@ export const Container = styled.div<PriorityProps>`
 
     background-color: #FFFFFF;
     border-left:
-      ${(props) => props.priority === "priorityLow" ?
-        `8px solid ${theme.colors.priorityLow}` :
+      ${(props) => props.priority === "priorityHigh" ?
+        `8px solid ${theme.colors.priorityHigh}` :
           (props) => props.priority === "priorityMedium" ?
-            `8px solid ${theme.colors.priorityMedium}` : `8px solid ${theme.colors.priorityHigh}`};
+            `8px solid ${theme.colors.priorityMedium}` : `8px solid ${theme.colors.priorityLow}`};
 
     .priority{
       width: 8px;
       height: 100%;
       margin-right: 0.5rem;
       border-radius: 0.25rem 0 0 0.25rem;
-    }
-
-    .priorityLow {
-      background-color: ${theme.colors.priorityLow};
-    }
-
-    .priorityMedium {
-      background-color: ${theme.colors.priorityMedium};
-    }
-
-    .priorityHigh {
-      background-color: ${theme.colors.priorityHigh};
     }
   }
 

@@ -20,7 +20,7 @@ export function UserInfo() {
       </div>
       <div className="task-counter">
         <p>Completed Tasks</p>
-        <span>{completedTasks.length}</span>
+        <span>{`0${completedTasks.length}`}</span>
       </div>
     </S.Container>
   );

@@ -23,6 +23,7 @@ export function Card({
   priority,
   date,
   description,
+  checked,
 }: TaskProps) {
   const {
     deleteTask,
@@ -34,12 +35,13 @@ export function Card({
   const [isTaskDone, setIsTaskDone] = useState(false);
 
   const task = {
-    title: title,
+    title,
     position: position,
     tag: tag,
     priority: priority,
     date: date,
     description: description,
+    checked: checked,
   };
 
   function handleToggle() {
@@ -47,7 +49,7 @@ export function Card({
   }
 
   function handleDeleteTask() {
-    deleteTask(position);
+    deleteTask(task.position);
   }
 
   function handleShowTask() {
@@ -59,24 +61,10 @@ export function Card({
     setTimeout(() => {
       console.log('handleCompleteTask');
 
-      handleDeleteTask();
       storeCompletedTask(task);
+      handleDeleteTask();
     }, 2300);
   }
-
-  const intialStyles = {
-    borderBottom: '2px solid #67ec1a',
-    // backgroundColor: 'green',
-    width: '0%',
-  };
-
-  const endingStyles = {
-    borderBottom: '2px solid #67ec1a',
-    // backgroundColor: 'green',
-    width: '100%',
-  };
-
-  const transition = { duration: 2, ease: 'easeOut' };
 
   useEffect(() => {
     console.log(isTaskDone);
@@ -86,17 +74,22 @@ export function Card({
   }, [isTaskDone]);
 
   return (
-    <S.Container priority={priority}>
-      <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.99 }}>
-        <motion.li
-          layout
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-        >
+    <S.Container priority={task.priority}>
+      <motion.div
+        layout
+        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.99 }}
+      >
+        <motion.li layout>
           <motion.div className="content">
-            {/* <motion.div className={`priority ${priority}`} /> */}
-
-            <motion.div layout>
+            <motion.div
+              layout
+              // initial={{ opacity: 0, scale: 0 }}
+              // animate={{ opacity: 1, scale: 1 }}
+            >
               <Checkbox
                 color="default"
                 checked={isTaskDone}
@@ -105,7 +98,7 @@ export function Card({
             </motion.div>
 
             <motion.div className="title" layout onClick={handleShowTask}>
-              <p>{title}</p>
+              <p>{task.title}</p>
             </motion.div>
 
             <motion.div className="functions" layout>
@@ -121,30 +114,12 @@ export function Card({
         </motion.li>
         {isTaskDone && (
           <motion.div
-            initial={intialStyles}
-            animate={endingStyles}
-            transition={transition}
+            initial={{ borderBottom: '2px solid #67ec1a', width: '0%' }}
+            animate={{ borderBottom: '2px solid #67ec1a', width: '100%' }}
+            transition={{ duration: 2, ease: 'easeOut' }}
           />
         )}
       </motion.div>
     </S.Container>
-  );
-}
-
-interface DescriptionProps {
-  description: String;
-}
-
-function Content({ description }: DescriptionProps) {
-  return (
-    <motion.div
-      className="description"
-      layout
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      <span>{description}</span>
-    </motion.div>
   );
 }

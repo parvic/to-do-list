@@ -98,7 +98,7 @@ export const TasksSection = styled.div`
   }
 `;
 
-export const Footer = styled.footer`
+export const AddButton = styled.div`
   display: flex;
   justify-content: flex-end;
 
@@ -108,8 +108,8 @@ export const Footer = styled.footer`
     align-items: center;
     justify-content: center;
 
-    width: 5rem;
-    height: 5rem;
+    /* width: 5rem;
+    height: 5rem; */
     /* margin: 1rem; */
 
     background-color: rgb(255, 0, 64);
