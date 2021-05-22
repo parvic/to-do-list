@@ -47,7 +47,6 @@ export function Card({
   }
 
   function handleDeleteTask() {
-    console.log('handleDeleteTask');
     deleteTask(position);
   }
 

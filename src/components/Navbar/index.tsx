@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, Search, Close } from '@material-ui/icons/';
 import { useMediaQuery } from 'react-responsive';
 
 import * as S from './style';
 import theme from '../../styles/theme/light';
+import { TaskContext } from 'context/TaskContext';
+
+interface TaskProps {
+  updateTaskFilter: (filter: string) => void;
+}
 
 export function Navbar() {
+  const { updateTaskFilter } = useContext(TaskContext);
+
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const smallScreen = useMediaQuery({
@@ -43,16 +50,35 @@ export function Navbar() {
           {isNavbarOpen ? <Close /> : <Menu />}
         </button>
 
-        {isNavbarOpen && <TaskFilterMenu />}
+        {isNavbarOpen && <TaskFilterMenu updateTaskFilter={updateTaskFilter} />}
       </div>
     </S.Container>
   );
 }
 
-function TaskFilterMenu() {
+function TaskFilterMenu({ updateTaskFilter }: TaskProps) {
+  function handleShowAllTasks() {
+    updateTaskFilter('allTasks');
+  }
+
+  function handleFilterCompletedTasks() {
+    updateTaskFilter('completedTasks');
+  }
+
+  function handleFilterLowPriorityTasks() {
+    updateTaskFilter('priorityLow');
+  }
+
+  function handleFilterMediumPriorityTasks() {
+    updateTaskFilter('priorityMedium');
+  }
+
+  function handleFilterHighPriorityTasks() {
+    updateTaskFilter('priorityHigh');
+  }
+
   return (
     <div id="task-filter-menu">
-      <p>Tasks by:</p>
       <motion.button
         whileHover={{ filter: 'brightness(85%)' }}
         whileTap={{ scale: 0.95 }}
@@ -65,6 +91,25 @@ function TaskFilterMenu() {
           opacity: '1',
           transform: 'translateY(0px) scale(1) translateZ(0px)',
         }}
+        onClick={handleShowAllTasks}
+      >
+        All Tasks
+      </motion.button>
+
+      <p>Filter tasks by:</p>
+      <motion.button
+        whileHover={{ filter: 'brightness(85%)' }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.3 }}
+        initial={{
+          opacity: '0',
+          transform: 'translateY(50px) scale(0) translateZ(0px)',
+        }}
+        animate={{
+          opacity: '1',
+          transform: 'translateY(0px) scale(1) translateZ(0px)',
+        }}
+        onClick={handleFilterCompletedTasks}
       >
         Completion
       </motion.button>
@@ -81,6 +126,7 @@ function TaskFilterMenu() {
           opacity: '1',
           transform: 'translateY(0px) scale(1) translateZ(0px)',
         }}
+        onClick={handleFilterLowPriorityTasks}
       >
         Low Priority
       </motion.button>
@@ -97,6 +143,7 @@ function TaskFilterMenu() {
           opacity: '1',
           transform: 'translateY(0px) scale(1) translateZ(0px)',
         }}
+        onClick={handleFilterMediumPriorityTasks}
       >
         Medium Priority
       </motion.button>
@@ -113,6 +160,7 @@ function TaskFilterMenu() {
           opacity: '1',
           transform: 'translateY(0px) scale(1) translateZ(0px)',
         }}
+        onClick={handleFilterHighPriorityTasks}
       >
         High Priority
       </motion.button>

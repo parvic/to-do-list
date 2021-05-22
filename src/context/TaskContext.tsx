@@ -8,10 +8,12 @@ import {
 interface TaskContextData {
   tasks: TaskProps[];
   completedTasks: TaskProps[];
+  taskFilter: string;
   taskDetails: TaskProps;
   isTaskDetailShown: boolean;
   createNewTask: (title: string, description: string, priority: string) => void;
   deleteTask: (position: number) => void;
+  updateTaskFilter: (filter: string) => void;
   showTaskDetails: (task: TaskProps) => void;
   storeCompletedTask: (task: TaskProps) => void;
   getTasksFromLocalStorage: () => [];
@@ -38,6 +40,7 @@ export const TaskContext = createContext({} as TaskContextData);
 export function TaskProvider({ children }: TaskProviderProps) {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [completedTasks, setCompletedTasks] = useState<TaskProps[]>([]);
+  const [taskFilter, setTaskFilter] = useState('');
   const [isTaskDetailShown, setIsTaskDetailShown] = useState(true);
   const [taskDetails, setTaskDetails] = useState<TaskProps>(null);
   const [lastPosition, setLastPosition] = useState();
@@ -61,6 +64,10 @@ export function TaskProvider({ children }: TaskProviderProps) {
       return task.position !== position && task;
     });
     setTasks(tempTask);
+  }
+
+  function updateTaskFilter(filter: string) {
+    setTaskFilter(filter);
   }
 
   function storeCompletedTask(completedTask: TaskProps) {
@@ -92,10 +99,12 @@ export function TaskProvider({ children }: TaskProviderProps) {
       value={{
         tasks,
         completedTasks,
+        taskFilter,
         taskDetails,
         isTaskDetailShown,
         createNewTask,
         deleteTask,
+        updateTaskFilter,
         showTaskDetails,
         storeCompletedTask,
         getTasksFromLocalStorage,
