@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.form`
+interface FormProps {
+  hasError: boolean;
+}
+
+export const Container = styled.form<FormProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,7 +23,8 @@ export const Container = styled.form`
     padding: 1rem;
 
     background-color: #e7e9ee;
-    border: 1px solid #d7d7d7;
+    border: ${(props) => props.hasError ? '1px solid #C53030': '1px solid #d7d7d7'};
+
     border-radius: 0.25rem;
 
     font-weight: 400;
@@ -70,4 +75,10 @@ export const SubmitButton = styled.button`
   background-color: #33CC95;
   border-radius: 0.25rem;
   box-shadow: 1px 1px 5px 1px #bbb;
+`;
+
+export const Error = styled.span`
+    display: block;
+    color: #c53030;
+    margin-top: 8px;
 `;

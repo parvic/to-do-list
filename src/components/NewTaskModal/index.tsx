@@ -15,6 +15,7 @@ interface NewTaskProps {
 }
 
 export function NewTaskModal({ isOpen, onRequestClose }: NewTaskProps) {
+  const [inputError, setInputError] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('priorityLow');
@@ -29,12 +30,18 @@ export function NewTaskModal({ isOpen, onRequestClose }: NewTaskProps) {
 
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
-    createNewTask(title, description, priority);
 
-    setTitle('');
-    setDescription('');
-    setPriority('priorityLow');
-    onRequestClose();
+    if (!title || !description) {
+      setInputError('Please, fill in the red fields');
+      return;
+    } else {
+      createNewTask(title, description, priority);
+
+      setTitle('');
+      setDescription('');
+      setPriority('priorityLow');
+      onRequestClose();
+    }
   }
 
   function handleSelectPriority(prioritySelected: {
@@ -59,9 +66,10 @@ export function NewTaskModal({ isOpen, onRequestClose }: NewTaskProps) {
         <Close />
       </button>
 
-      <S.Container onSubmit={handleCreateNewTask}>
+      <S.Container hasError={!!inputError} onSubmit={handleCreateNewTask}>
         <h2>Create your Next Task</h2>
 
+        {inputError && <S.Error>{inputError}</S.Error>}
         <input
           type="text"
           value={title}
