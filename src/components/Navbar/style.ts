@@ -38,8 +38,14 @@ export const Container = styled(motion.nav)`
     border: none;
     color: #fff;
 
+    transform: filter 0.2s;
+
     svg {
       font-size: 1.5rem;
+    }
+
+    &:hover {
+      filter: brightness(0.95);
     }
   }
 

@@ -72,6 +72,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
   }
 
   function storeCompletedTask(completedTask: TaskProps) {
+    completedTask.checked = true;
     setCompletedTasks([...completedTasks, completedTask]);
   }
 

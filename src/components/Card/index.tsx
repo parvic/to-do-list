@@ -85,17 +85,19 @@ export function Card({
       >
         <motion.li layout>
           <motion.div className="content">
-            <motion.div
-              layout
-              // initial={{ opacity: 0, scale: 0 }}
-              // animate={{ opacity: 1, scale: 1 }}
-            >
-              <Checkbox
-                color="default"
-                checked={isTaskDone}
-                onChange={handleToggle}
-              />
-            </motion.div>
+            {!isTaskDone && (
+              <motion.div
+                layout
+                // initial={{ opacity: 0, scale: 0 }}
+                // animate={{ opacity: 1, scale: 1 }}
+              >
+                <Checkbox
+                  color="default"
+                  checked={isTaskDone}
+                  onChange={handleToggle}
+                />
+              </motion.div>
+            )}
 
             <motion.div className="title" layout onClick={handleShowTask}>
               <p>{task.title}</p>
