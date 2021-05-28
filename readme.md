@@ -101,12 +101,19 @@ You'll also need Node.js installed. Download it from the link below.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/parvic/to-do-list.git
+    git clone https://github.com/parvic/to-do-list.git
    ```
 2. Install yarn packages
    ```sh
-   yarn
+    yarn
    ```
+3. To execute the project locally, run the following command:
+   ```sh
+    yarn dev
+   ```
+4. You should access the app through
+
+   [http://localhost:3000](http://localhost:3000)
 
 <!-- USAGE EXAMPLES -->
 
@@ -151,9 +158,11 @@ Any contributions you would like to do are **greatly appreciated**.
 
 <!-- LICENSE -->
 
+<!--
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+-->
 
 <!-- CONTACT -->
 
